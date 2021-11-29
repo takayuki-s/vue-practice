@@ -1,6 +1,6 @@
 <template>
   <div>
-    <like-header></like-header>
+    <LikeHeader></LikeHeader>
     <LikeNumber></LikeNumber>
   </div>
 </template>
@@ -19,5 +19,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+div {
+  border: 1px solid blue;
+}
 </style>
