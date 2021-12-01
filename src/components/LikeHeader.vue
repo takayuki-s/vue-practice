@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>{{ headerText }}</h1>
     <slot></slot>
+    <h1>{{ headerText }}</h1>
   </div>
 </template>
 
