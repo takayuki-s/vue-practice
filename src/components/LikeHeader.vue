@@ -1,3 +1,12 @@
 <template>
-  <h1>トータルいいね数</h1>
+  <div>
+    <h1>{{ headerText }}</h1>
+    <slot></slot>
+  </div>
 </template>
+
+<script>
+export default {
+  props: ["headerText"]
+}
+</script>

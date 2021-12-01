@@ -1,6 +1,9 @@
 <template>
   <div>
-    <LikeHeader></LikeHeader>
+    <LikeHeader headerText="トータルのいいね数">
+      <h1>HTMLのタグごと送る</h1>
+      <h2>{{ number }}</h2>
+    </LikeHeader>
     <h2>{{ number }}</h2>
     <LikeNumber :total-number="number" test-props="こんにちは" v-on:my-click="number = $event"></LikeNumber>
     <LikeNumber :total-number="number" test-props="こんばんは"></LikeNumber>
