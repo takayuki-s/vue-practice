@@ -1,9 +1,10 @@
 <template>
   <div>
-    <LikeHeader headerText="hello">
+    <!-- <LikeHeader headerText="hello">
       <h1>トータルのいいね数</h1>
       <h2>{{ number }}</h2>
-    </LikeHeader>
+    </LikeHeader> -->
+    <LikeHeader></LikeHeader>
     <!-- <h2>{{ number }}</h2> -->
     <LikeNumber :total-number="number" test-props="こんにちは" v-on:my-click="number = $event"></LikeNumber>
     <LikeNumber :total-number="number" test-props="こんばんは"></LikeNumber>
