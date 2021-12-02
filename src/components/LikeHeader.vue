@@ -1,7 +1,8 @@
 <template>
   <div>
-    <slot><h2>デフォルトのタイトル</h2></slot>
-    <h1>{{ headerText }}</h1>
+    <slot name="title"><h2>デフォルトのタイトル</h2></slot>
+    <p>いいねの数</p>
+    <slot name="number"></slot>
   </div>
 </template>
 
