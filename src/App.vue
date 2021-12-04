@@ -7,8 +7,7 @@
     <LikeNumber :total-number="number"></LikeNumber>
     <button @click="currentComponent = 'Home'">Home</button>
     <button @click="currentComponent = 'About'">About</button>
-    <Home v-if="currentComponent === 'Home'"></Home>
-    <About v-if="currentComponent === 'About'"></About>
+    <component :is="currentComponent"></component>
   </div>
 </template>
 
