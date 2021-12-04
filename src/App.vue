@@ -7,7 +7,7 @@
         <h3>はじめまして</h3>
         <p>よろしくお願いします</p>
       </template>
-      <template v-slot:[title]></template>
+      <template #[title]></template>
       <!-- <template v-slot:title="slotProps">
         <h2>こんにちは</h2>
         <h2>{{ slotProps }}</h2>
