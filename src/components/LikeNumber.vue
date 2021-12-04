@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>{{ testProps }}</p>
     <p>いいね({{ halfNumber }})</p>
     <button @click="increment">+1</button>
   </div>

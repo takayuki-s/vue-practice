@@ -1,23 +1,10 @@
 <template>
   <div>
     <LikeHeader>
-      <template>
-        <p>{{ slotProps }}</p>
-        <h2>みなさん</h2>
-        <h3>はじめまして</h3>
-        <p>よろしくお願いします</p>
-      </template>
-      <template #[title]></template>
-      <!-- <template v-slot:title="slotProps">
-        <h2>こんにちは</h2>
-        <h2>{{ slotProps }}</h2>
-      </template> -->
-      <!-- <template v-slot:number>
-        <h2>{{ number }}</h2>
-      </template> -->
+      <h3>はじめまして</h3>
     </LikeHeader>
-    <LikeNumber :total-number="number" test-props="こんにちは" v-on:my-click="number = $event"></LikeNumber>
-    <LikeNumber :total-number="number" test-props="こんばんは"></LikeNumber>
+    <LikeNumber :total-number="number" v-on:my-click="number = $event"></LikeNumber>
+    <LikeNumber :total-number="number"></LikeNumber>
   </div>
 </template>
 
