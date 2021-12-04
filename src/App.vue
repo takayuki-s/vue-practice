@@ -1,13 +1,17 @@
 <template>
   <div>
-    <LikeHeader v-slot="slotProps">
-      <p>{{ slotProps }}</p>
-      <h2>みなさん</h2>
+    <LikeHeader>
+      <template>
+        <p>{{ slotProps }}</p>
+        <h2>みなさん</h2>
+        <h3>はじめまして</h3>
+        <p>よろしくお願いします</p>
+      </template>
+      <template v-slot:[title]></template>
       <!-- <template v-slot:title="slotProps">
         <h2>こんにちは</h2>
         <h2>{{ slotProps }}</h2>
       </template> -->
-      <h3>はじめまして</h3>
       <!-- <template v-slot:number>
         <h2>{{ number }}</h2>
       </template> -->
@@ -22,7 +26,8 @@ import LikeHeader from "./components/LikeHeader.vue"
 export default {
   data: function() {
     return {
-      number: 12
+      number: 12,
+      title: "title"
     }
   },
   components: {
