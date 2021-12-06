@@ -17,7 +17,7 @@
       <pre>{{ eventData.title }}</pre>
       <label for="maxNumber">最大人数</label>
       <input id="maxNumber" type="number" v-model.number="eventData.maxNumber">
-      <p>{{ typeof eventData.maxNumber }}</p>
+      <p>{{ eventData.maxNumber }}</p>
       <label for="host">主催者</label>
       <input id="host" type="text" v-model.trim="eventData.host">
       <pre>{{ eventData.host }}</pre>
@@ -39,7 +39,7 @@ export default {
       number: 12,
       currentComponent: "Home",
       eventData: {
-        title: "タイトル",
+        title: "",
         maxNumber: 0,
         host: "",
         detail: "",
