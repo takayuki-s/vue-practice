@@ -4,7 +4,9 @@ import LikeNumber from "./components/LikeNumber.vue";
 
 Vue.config.productionTip = false;
 Vue.component("LikeNumber", LikeNumber);
-Vue.directive("border", function (el, binding) {});
+Vue.directive("border", function (el) {
+  el.style.border = "solid black 2px";
+});
 
 new Vue({
   render: (h) => h(App),
