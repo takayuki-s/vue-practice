@@ -11,7 +11,6 @@ export default {
   },
   directives: {
     border(el, binding) {
-      this.tmpData = "こんにちは";
       el.style.borderWidth = binding.value.width;
       el.style.borderColor = binding.value.color;
       el.style.borderStyle = binding.arg;
