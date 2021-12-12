@@ -1,11 +1,17 @@
 <template>
-  <p v-border:solid.round.shadow="{width: '3px', color: 'red'}">Home</p>
+  <p v-border:solid.round.shadow="{width: '3px', color: 'red'}">Home {{ tmpData }}</p>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      tmpData: "hello"
+    };
+  },
   directives: {
     border(el, binding) {
+      this.tmpData = "こんにちは";
       el.style.borderWidth = binding.value.width;
       el.style.borderColor = binding.value.color;
       el.style.borderStyle = binding.arg;
