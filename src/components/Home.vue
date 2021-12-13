@@ -1,13 +1,27 @@
 <template>
-  <p v-border:solid.round.shadow="{width: '3px', color: 'red'}">Home {{ tmpData }}</p>
+  <div>
+    <p v-border:solid.round.shadow="{width: '3px', color: 'red'}">Home {{ tmpData }}</p>
+    <h2>{{ upperCaseTitle }}</h2>
+    <h2>{{ upperCaseSubTitle }}</h2>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      tmpData: "hello"
+      tmpData: "hello",
+      title: "Welcome to Tokyo",
+      subtitle: "Tokyo is a great city",
     };
+  },
+  computed: {
+    upperCaseTitle() {
+      return this.title.toUpperCase();
+    },
+    upperCaseSubTitle() {
+      return this.subtitle.toUpperCase();
+    }
   },
   directives: {
     border(el, binding) {
