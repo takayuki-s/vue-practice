@@ -5,10 +5,13 @@
     <h2>{{ subTitle | upperCase | lowerCase }}</h2>
     <p>{{ number }}</p>
     <button @click="number++">+1</button>
+    <CountNumber></CountNumber>
   </div>
 </template>
 
 <script>
+import CountNumber from "./CountNumber.vue"
+
 export default {
   data() {
     return {
@@ -17,6 +20,9 @@ export default {
       subTitle: "Tokyo is a great city",
       number: 0,
     };
+  },
+  components: {
+    CountNumber
   },
   filters: {
     lowerCase(value) {
