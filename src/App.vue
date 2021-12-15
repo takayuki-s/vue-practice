@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="main">
+      <button @click="show = !show">切り替え</button>
+      <p v-if="show">hello</p>
+    </div>
     <LikeHeader>
       <h3>はじめまして</h3>
     </LikeHeader>
@@ -69,7 +73,8 @@ export default {
         target: [],
         price: "無料",
         location: [],
-      }
+      },
+      show: true,
     }
   },
   components: {
@@ -80,3 +85,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.main {
+  width: 70%;
+  margin: auto;
+  padding-top: 5rem;
+  text-align-last: center;
+}
+</style>
