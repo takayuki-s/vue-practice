@@ -2,7 +2,9 @@
   <div>
     <div class="main">
       <button @click="show = !show">切り替え</button>
-      <p v-if="show">hello</p>
+      <transition name="fade">
+        <p v-if="show">hello</p>
+      </transition>
     </div>
     <LikeHeader>
       <h3>はじめまして</h3>
@@ -86,7 +88,26 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.fade-enter {
+  /* 現れる時の最初の状態 */
+}
+.fade-enter-active {
+  /* 現れる時のトランジションの状態 */
+}
+.fade-enter-to {
+  /* 現れる時の最後の状態 */
+}
+.fade-leave {
+  /* 消える時の最初の状態 */
+}
+.fade-leave-active {
+  /* 消える時のトランジションの状態 */
+}
+.fade-leave-to {
+  /* 消える時の最後の状態 */
+}
+
 .main {
   width: 70%;
   margin: auto;
