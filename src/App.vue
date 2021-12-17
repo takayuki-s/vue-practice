@@ -2,7 +2,15 @@
   <div>
     <div class="main">
       <button @click="show = !show">切り替え</button>
-      <transition name="fade" appear="">
+      <transition 
+        enter-class=""
+        enter-active-class="animate__animated animate__bounce"
+        enter-to-class=""
+        leave-class=""
+        leave-active-class="animate__animated animate__shakeX"
+        leave-to-class=""
+        appear
+      >
         <p v-if="show">hello</p>
       </transition>
       <transition name="slide" type="animation" appear>
