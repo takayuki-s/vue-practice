@@ -13,6 +13,7 @@
       <button @click="show = !show">切り替え</button>
       <br><br>
       <transition
+        :css="false"
         @before-enter="beforeEnter"
         @enter="enter"
         @after-enter="afterEnter"
