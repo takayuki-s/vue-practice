@@ -4,6 +4,12 @@
       <button @click="myAnimation = 'slide'">Slide</button>
       <button @click="myAnimation = 'fade'">Fade</button>
       <p>{{ myAnimation }}</p>
+      <button @click="myComponent = 'ComponentA'">ComponentA</button>
+      <button @click="myComponent = 'ComponentB'">ComponentB</button>
+      <transition name="fade" mode="out-in">
+        <component :is="myComponent"></component>
+      </transition>
+      <br>
       <button @click="show = !show">切り替え</button>
       <transition name="fade" mode="out-in">
         <p v-if="show" key="bye">さよなら</p>
@@ -77,6 +83,8 @@ import LikeHeader from "./components/LikeHeader.vue"
 import Home from "./components/Home.vue"
 import About from "./components/About.vue"
 import EventTitle from "./components/EventTitle.vue"
+import ComponentA from "./components/ComponentA.vue"
+import ComponentB from "./components/ComponentB.vue"
 
 export default {
   data: function() {
@@ -96,13 +104,16 @@ export default {
       },
       show: true,
       myAnimation: "Slide",
+      myComponent: "ComponentA",
     }
   },
   components: {
     LikeHeader,
     Home,
     About,
-    EventTitle
+    EventTitle,
+    ComponentA,
+    ComponentB,
   }
 }
 </script>
