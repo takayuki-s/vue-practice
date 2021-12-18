@@ -11,6 +11,21 @@
       </transition>
       <br>
       <button @click="show = !show">切り替え</button>
+      <br><br>
+      <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter"
+        @enter-cancelled="enterCancelled"
+        @before-leave="beforeLeave"
+        @leave="leave"
+        @after-leave="afterLeave"
+        @leave-cancelled="leaveCancelled"
+
+      >
+        <div class="circle" v-if="show"></div>
+      </transition>
+      <br>
       <transition name="fade" mode="out-in">
         <p v-if="show" key="bye">さよなら</p>
         <p v-else key="hello">こんにちは</p>
@@ -107,6 +122,32 @@ export default {
       myComponent: "ComponentA",
     }
   },
+  methods: {
+    beforeEnter() {
+      // 現れる前
+    },
+    enter() {
+      // 現れる時
+    },
+    afterEnter() {
+      // 現れた後
+    },
+    enterCancelled() {
+      // 現れるアニメーションがキャンセルされた時
+    },
+    beforeLeave() {
+      // 消える前
+    },
+    leave() {
+      // 消える時
+    },
+    afterLeave() {
+      // 消えた後
+    },
+    leaveCancelled() {
+      // 消えるアニメーションがキャンセルされた時
+    },
+  },
   components: {
     LikeHeader,
     Home,
@@ -119,6 +160,14 @@ export default {
 </script>
 
 <style scoped>
+.circle {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  border-radius: 100px;
+  background-color: deeppink;
+}
+
 .fade-enter {
   /* 現れる時の最初の状態 */
   opacity: 0;
