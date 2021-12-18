@@ -123,28 +123,28 @@ export default {
     }
   },
   methods: {
-    beforeEnter() {
+    beforeEnter(el) {
       // 現れる前
     },
-    enter() {
+    enter(el, done) {
       // 現れる時
     },
-    afterEnter() {
+    afterEnter(el) {
       // 現れた後
     },
-    enterCancelled() {
+    enterCancelled(el) {
       // 現れるアニメーションがキャンセルされた時
     },
-    beforeLeave() {
+    beforeLeave(el) {
       // 消える前
     },
-    leave() {
+    leave(el, done) {
       // 消える時
     },
-    afterLeave() {
+    afterLeave(el) {
       // 消えた後
     },
-    leaveCancelled() {
+    leaveCancelled(el) {
       // 消えるアニメーションがキャンセルされた時
     },
   },
