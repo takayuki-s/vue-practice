@@ -12,11 +12,13 @@
       <br>
       <button @click="add">追加</button>
       <ul style="width:100px; margin:auto;">
-        <li
-          style="cursor: pointer;"
-          v-for="(number, index, key) in numbers" :key="key"
-          @click="remove(index)"
-        >{{ number }}</li>
+        <transition-group name="fade">
+          <li
+            style="cursor: pointer;"
+            v-for="(number, index) in numbers" :key="number"
+            @click="remove(index)"
+          >{{ number }}</li>
+        </transition-group>
       </ul>
       <br>
       <button @click="show = !show">切り替え</button>
@@ -188,6 +190,10 @@ export default {
   background-color: deeppink;
 }
 
+.fade-move {
+  transition: transform 1s;
+}
+
 .fade-enter {
   /* 現れる時の最初の状態 */
   opacity: 0;
@@ -207,6 +213,8 @@ export default {
 .fade-leave-active {
   /* 消える時のトランジションの状態 */
   transition: opacity .5s;
+  position: absolute;
+  width: 100px;
 }
 .fade-leave-to {
   /* 消える時の最後の状態 */
