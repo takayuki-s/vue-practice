@@ -1,9 +1,15 @@
 <template>
   <div style="width: 700px; margin: auto; padding-top: 50px;">
     <nav>
-      <a href="/">Home</a>
-      <a href="/users">Users</a>
+      <router-link to="/" class="link">Home</router-link>
+      <router-link to="/users" class="link">Users</router-link>
     </nav>
     <router-view></router-view>
   </div>
 </template>
+
+<style scoped>
+.link {
+  margin-right: 10px;
+}
+</style>
