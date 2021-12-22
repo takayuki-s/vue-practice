@@ -11,6 +11,6 @@ export default new Router({
   // URLとコンポーネントをマッピング
   routes: [
     { path: "/", component: Home },
-    { path: "/users", component: Users },
+    { path: "/users/:id", component: Users },
   ],
 });
