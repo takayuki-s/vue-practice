@@ -12,6 +12,12 @@
 export default {
   created() {
     console.log('created!');
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      console.log(from);
+    }
   }
 }
 </script>
