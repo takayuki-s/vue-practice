@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  props: ["id"],
   created() {
     console.log('created!');
   },
