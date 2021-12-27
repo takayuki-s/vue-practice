@@ -41,4 +41,10 @@ export default new Router({
       redirect: "/",
     },
   ],
+  scrollBehavior() {
+    return {
+      selector: "#next-user",
+      offset: { x: 0, y: 100 },
+    };
+  },
 });
