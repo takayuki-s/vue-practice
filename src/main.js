@@ -6,7 +6,6 @@ import LikeNumber from "./components/LikeNumber.vue";
 Vue.config.productionTip = false;
 
 router.beforeEach((to, from, next) => {
-  console.log("global-beforeEach");
   if (to.path === "/users/1") {
     next({ path: "/" });
   }
