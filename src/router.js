@@ -9,13 +9,13 @@ import Router from "vue-router";
 const Home = () => import(/*webpackChunkName: "Home"*/ "./views/Home.vue");
 const Users = () => import(/*webpackChunkName: "Users"*/ "./views/Users.vue");
 const UsersPosts = () =>
-  import(/*webpackChunkName: "UsersPosts"*/ "./views/UsersPosts.vue");
+  import(/*webpackChunkName: "Users"*/ "./views/UsersPosts.vue");
 const UsersProfile = () =>
-  import(/*webpackChunkName: "UsersProfile"*/ "./views/UsersProfile.vue");
+  import(/*webpackChunkName: "Users"*/ "./views/UsersProfile.vue");
 const HeaderHome = () =>
   import(/*webpackChunkName: "HeaderHome"*/ "./views/HeaderHome.vue");
 const HeaderUsers = () =>
-  import(/*webpackChunkName: "HeaderUsers"*/ "./views/HeaderUsers.vue");
+  import(/*webpackChunkName: "Users"*/ "./views/HeaderUsers.vue");
 
 // Vue.useとすることでVue専用のプラグインを使うことができる
 Vue.use(Router);
