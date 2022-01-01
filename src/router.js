@@ -26,9 +26,6 @@ export default new Router({
         default: Home,
         header: HeaderHome,
       },
-      beforeEnter(to, from, next) {
-        next(false);
-      },
     },
     {
       path: "/users/:id",
