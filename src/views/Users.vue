@@ -17,13 +17,23 @@
 export default {
   props: ["id"],
   beforeRouteEnter(to, from, next) {
-    next();
+    console.log("beforeRouteEnter")
+    next(vm => {
+      console.log(vm.id)
+    });
   },
   beforeRouteUpdate(to, from, next) {
+    console.log("beforeRouteUpdate")
     next();
   },
   beforeRouteLeave(to, from, next) {
-    next();
+    console.log("beforeRouteLeave")
+    const isLeave = window.confirm("本当にこのページを離れますか？")
+    if (isLeave) {
+      next()
+    } else {
+      next(false)
+    }
   },
 
 }
