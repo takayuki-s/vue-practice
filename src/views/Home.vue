@@ -3,6 +3,8 @@
     <h3>Home</h3>
     <button @click="toUsers">Usersのページに行く</button>
     <p>{{ count }}</p>
+    <p>{{ doubleCount }}</p>
+    <p>{{ doubleCountState }}</p>
   </div>
 </template>
 
@@ -10,7 +12,13 @@
 export default {
   computed: {
     count() {
-      return this.$store.state.count
+      return this.$store.state.count;
+    },
+    doubleCount() {
+      return this.$store.state.count * 2;
+    },
+    doubleCountState() {
+      return this.$store.getters.doubleCount;
     }
   },
   methods: {
