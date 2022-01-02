@@ -2,25 +2,18 @@
   <div>
     <h3>Home</h3>
     <button @click="toUsers">Usersのページに行く</button>
-    <p>{{ count }}</p>
-    <p>{{ doubleCount }}</p>
-    <p>{{ doubleCountState }}</p>
+    <!-- <p>{{ doubleCount }}</p> -->
+    <p>{{ myComponentDoubleCount }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
-  computed: {
-    count() {
-      return this.$store.state.count;
-    },
-    doubleCount() {
-      return this.$store.state.count * 2;
-    },
-    doubleCountState() {
-      return this.$store.getters.doubleCount;
-    }
-  },
+  // computed: mapGetters(["doubleCount"]),
+  computed: mapGetters({
+    myComponentDoubleCount: "doubleCount"
+  }),
   methods: {
     toUsers() {
       this.$router.push({
