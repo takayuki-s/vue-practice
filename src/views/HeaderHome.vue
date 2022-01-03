@@ -9,10 +9,13 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+// import { mapMutations } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["increment", "decrement"])
+    // ...mapMutations(["increment", "decrement"])
+    increment() {
+      this.$store.dispatch('increment', 1)
+    }
   }
 }
 </script>

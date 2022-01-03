@@ -17,4 +17,9 @@ export default new Vuex.Store({
       state.count -= number;
     },
   },
+  actions: {
+    increment(context, number) {
+      context.commit("increment", number);
+    },
+  },
 });
