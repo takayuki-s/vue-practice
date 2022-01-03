@@ -15,6 +15,9 @@ export default {
     // ...mapMutations(["increment", "decrement"])
     increment() {
       this.$store.dispatch('increment', 1)
+    },
+    decrement() {
+      this.$store.dispatch('decrement', 1)
     }
   }
 }
