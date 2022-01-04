@@ -3,7 +3,7 @@
     <h3>Home</h3>
     <button @click="toUsers">Usersのページに行く</button>
     <p>{{ doubleCount }}</p>
-    <input type="text" :value="message" @input="updateMessage">
+    <input type="text" v-model="message">
     <p>{{ message }}</p>
   </div>
 </template>
@@ -13,9 +13,17 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["doubleCount"]),
-    message() {
-      return this.$store.getters.message
-    },
+    // message() {
+    //   return this.$store.getters.message
+    // },
+    message: {
+      get() {
+        return this.$store.getters.message
+      },
+      set(value) {
+        this.$store.dispatch("updateMessage", value)
+      }
+    }
   },
   methods: {
     updateMessage(e) {
