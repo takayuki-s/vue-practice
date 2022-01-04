@@ -12,7 +12,10 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["doubleCount"]),
+    ...mapGetters("count", ["doubleCount"]),
+    // doubleCount() {
+    //   return this.$store.getters["count/doubleCount"]
+    // },
     // message() {
     //   return this.$store.getters.message
     // },

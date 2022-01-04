@@ -14,7 +14,7 @@ import { mapActions } from "vuex";
 export default {
   methods: {
     // ...mapMutations(["increment", "decrement"])
-    ...mapActions(["increment", "decrement"]),
+    ...mapActions("count", ["increment", "decrement"]),
   }
 }
 </script>
