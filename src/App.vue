@@ -7,6 +7,8 @@
     <br><br>
     <label for="comment">コメント：</label>
     <textarea id="comment" v-model="comment"></textarea>
+    <br><br>
+    <button @click="createComment">コメントをサーバーに送る</button>
     <h2>掲示板</h2>
     <transition name="fade" mode="out-in" @before-enter="beforeEnter">
       <router-view></router-view>
@@ -15,6 +17,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -25,6 +28,27 @@ export default {
   methods: {
     beforeEnter() {
       this.$root.$emit('triggerScroll')
+    },
+    createComment() {
+      axios.post("https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents/comments",
+      {
+        fields: {
+          name: {
+            stringValue: this.name
+          },
+          comment: {
+            stringValue: this.comment
+          }
+        }
+      }
+      ).then(response => {
+        console.log(response);
+      }).catch(error => {
+        console.log(error);
+      });
+      console.log("hello")
+      this.name = "";
+      this.comment = "";
     }
   }
 }
