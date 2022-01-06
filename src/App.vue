@@ -10,6 +10,11 @@
     <br><br>
     <button @click="createComment">コメントをサーバーに送る</button>
     <h2>掲示板</h2>
+    <div v-for="post in posts" :key="post.name">
+      <br>
+      <div>名前：{{ post.fields.name.stringValue }}</div>
+      <div>コメント：{{ post.fields.comment.stringValue }}</div>
+    </div>
     <transition name="fade" mode="out-in" @before-enter="beforeEnter">
       <router-view></router-view>
     </transition>
@@ -23,6 +28,7 @@ export default {
     return {
       name: "",
       comment: "",
+      posts: [],
     };
   },
   created() {
@@ -30,7 +36,8 @@ export default {
         "https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents/comments"
       )
       .then(response => {
-        console.log(response)
+        this.posts = response.data.documents
+        console.log(response.data.documents)
       })
   },
   methods: {
