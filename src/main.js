@@ -12,7 +12,7 @@ axios.defaults.baseURL =
 axios.defaults.headers.common["Authorization"] = "";
 axios.defaults.headers.get["Accept"] = "application/json";
 
-axios.interceptors.request.use(
+const interceptorRequest = axios.interceptors.request.use(
   (config) => {
     console.log("interceptor request", config);
     return config;
@@ -21,7 +21,7 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-axios.interceptors.response.use(
+const interceptorResponse = axios.interceptors.response.use(
   (config) => {
     console.log("interceptor response", config);
     return config;
@@ -30,6 +30,9 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+console.log(interceptorRequest);
+axios.interceptors.request.eject(0);
+axios.interceptors.response.eject(interceptorResponse);
 
 router.beforeEach((to, from, next) => {
   if (to.path === "/users/1") {
