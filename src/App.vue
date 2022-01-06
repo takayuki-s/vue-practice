@@ -25,6 +25,14 @@ export default {
       comment: "",
     };
   },
+  created() {
+    axios.get(
+        "https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents/comments"
+      )
+      .then(response => {
+        console.log(response)
+      })
+  },
   methods: {
     beforeEnter() {
       this.$root.$emit('triggerScroll')
