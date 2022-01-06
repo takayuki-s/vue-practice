@@ -9,6 +9,8 @@ Vue.config.productionTip = false;
 
 axios.defaults.baseURL =
   "https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents";
+axios.defaults.headers.common["Authorization"] = "";
+axios.defaults.headers.get["Accept"] = "application/json";
 
 router.beforeEach((to, from, next) => {
   if (to.path === "/users/1") {
