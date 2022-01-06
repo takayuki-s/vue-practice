@@ -37,7 +37,6 @@ export default {
       )
       .then(response => {
         this.posts = response.data.documents
-        console.log(response.data.documents)
       })
   },
   methods: {
