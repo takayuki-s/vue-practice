@@ -33,7 +33,7 @@ export default {
   },
   created() {
     axios.get(
-        "https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents/comments"
+        "/comments"
       )
       .then(response => {
         this.posts = response.data.documents
@@ -45,7 +45,7 @@ export default {
       this.$root.$emit('triggerScroll')
     },
     createComment() {
-      axios.post("https://firestore.googleapis.com/v1/projects/vuejs-http-d048c/databases/(default)/documents/comments",
+      axios.post("/comments",
       {
         fields: {
           name: {
