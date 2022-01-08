@@ -1,23 +1,5 @@
 <template>
-  <div style="width: 700px; margin: auto; padding-top: 50px;">
-    <router-view name="header"></router-view>
-    <h3>掲示板に投稿する</h3>
-    <label for="name">ニックネーム：</label>
-    <input id="name" type="text" v-model="name">
-    <br><br>
-    <label for="comment">コメント：</label>
-    <textarea id="comment" v-model="comment"></textarea>
-    <br><br>
-    <button @click="createComment">コメントをサーバーに送る</button>
-    <h2>掲示板</h2>
-    <div v-for="post in posts" :key="post.name">
-      <br>
-      <div>名前：{{ post.fields.name.stringValue }}</div>
-      <div>コメント：{{ post.fields.comment.stringValue }}</div>
-    </div>
-    <transition name="fade" mode="out-in" @before-enter="beforeEnter">
-      <router-view></router-view>
-    </transition>
+  <div id="app">
   </div>
 </template>
 
@@ -69,12 +51,4 @@ export default {
 </script>
 
 <style scoped>
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .5s;
-}
 </style>
