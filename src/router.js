@@ -18,7 +18,7 @@ const HeaderUsers = () =>
   import(/*webpackChunkName: "HeaderUsers"*/ "./views/HeaderUsers.vue");
 import Comments from "./views/Comments.vue";
 import Login from "./views/Login.vue";
-import Resister from "./views/Resister.vue";
+import Register from "./views/Register.vue";
 
 // Vue.useとすることでVue専用のプラグインを使うことができる
 Vue.use(Router);
@@ -36,8 +36,8 @@ export default new Router({
       component: Login,
     },
     {
-      path: "/resister",
-      component: Resister,
+      path: "/register",
+      component: Register,
     },
     {
       path: "/users/:id",
