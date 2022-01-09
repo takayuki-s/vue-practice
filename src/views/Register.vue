@@ -1,6 +1,5 @@
 <template>
   <div style="width: 700px; margin: auto; padding-top: 50px;">
-    <router-view name="header"></router-view>
     <h2>登録</h2>
     <label for="email">Email：</label>
     <input id="email" type="email" v-model="email">

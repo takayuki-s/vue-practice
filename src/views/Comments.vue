@@ -1,6 +1,5 @@
 <template>
   <div style="width: 700px; margin: auto; padding-top: 50px;">
-    <router-view name="header"></router-view>
     <h3>掲示板に投稿する</h3>
     <label for="name">ニックネーム：</label>
     <input id="name" type="text" v-model="name">
