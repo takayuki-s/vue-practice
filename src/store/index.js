@@ -31,6 +31,17 @@ export default new Vuex.Store({
           commit("updateIdToken", response.data.idToken);
         });
     },
+    register({ commit }, authData) {
+      axios
+        .post(`accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
+          email: authData.email,
+          password: authData.password,
+          returnSecureToken: true,
+        })
+        .then((response) => {
+          commit("updateIdToken", response.data.idToken);
+        });
+    },
   },
   modules: {
     count,
