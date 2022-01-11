@@ -25,7 +25,7 @@ export default {
   methods: {
     resister() {
       axios.post(
-        `/accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
+        `accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
         {
           email: this.email,
           password: this.password,
