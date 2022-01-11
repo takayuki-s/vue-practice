@@ -1,6 +1,7 @@
 <template>
   <div style="width: 700px; margin: auto; padding-top: 50px;">
     <h2>登録</h2>
+    <p>{{clientKey}}</p>
     <label for="email">Email：</label>
     <input id="email" type="email" v-model="email">
     <br><br>
@@ -18,12 +19,13 @@ export default {
     return {
       email: "",
       password: "",
+      clientKey: process.env.VUE_APP_FIREBASE_API_KEY,
     };
   },
   methods: {
     resister() {
       axios.post(
-        `/accounts:signUp?key=${process.env.FIREBASE_API_KEY}`,
+        `/accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
         {
           email: this.email,
           password: this.password,
