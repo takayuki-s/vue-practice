@@ -6,19 +6,20 @@ import Router from "vue-router";
 // import UsersProfile from "./views/UsersProfile.vue";
 // import HeaderHome from "./views/HeaderHome.vue";
 // import HeaderUsers from "./views/HeaderUsers.vue";
-const Home = () => import(/*webpackChunkName: "Home"*/ "./views/Home.vue");
+// const Home = () => import(/*webpackChunkName: "Home"*/ "./views/Home.vue");
 const Users = () => import(/*webpackChunkName: "Users"*/ "./views/Users.vue");
 const UsersPosts = () =>
   import(/*webpackChunkName: "UsersPosts"*/ "./views/UsersPosts.vue");
 const UsersProfile = () =>
   import(/*webpackChunkName: "UsersProfile"*/ "./views/UsersProfile.vue");
-const HeaderHome = () =>
-  import(/*webpackChunkName: "HeaderHome"*/ "./views/HeaderHome.vue");
+// const HeaderHome = () =>
+//   import(/*webpackChunkName: "HeaderHome"*/ "./views/HeaderHome.vue");
 const HeaderUsers = () =>
   import(/*webpackChunkName: "HeaderUsers"*/ "./views/HeaderUsers.vue");
 import Comments from "./views/Comments.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
+import store from "./store";
 
 // Vue.useとすることでVue専用のプラグインを使うことができる
 Vue.use(Router);
@@ -30,14 +31,35 @@ export default new Router({
     {
       path: "/",
       component: Comments,
+      beforeEnter(to, from, next) {
+        if (store.getters.idToken) {
+          next();
+        } else {
+          next("/login");
+        }
+      },
     },
     {
       path: "/login",
       component: Login,
+      beforeEnter(to, from, next) {
+        if (store.getters.idToken) {
+          next("/");
+        } else {
+          next();
+        }
+      },
     },
     {
       path: "/register",
       component: Register,
+      beforeEnter(to, from, next) {
+        if (store.getters.idToken) {
+          next("/");
+        } else {
+          next();
+        }
+      },
     },
     {
       path: "/users/:id",
