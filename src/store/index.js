@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import count from "./modules/count";
-import getters from "./getters";
 import axios from "../axios-auth";
 
 Vue.use(Vuex);
@@ -10,7 +9,9 @@ export default new Vuex.Store({
     message: "",
     idToken: null,
   },
-  getters,
+  getters: {
+    idToken: (state) => state.idToken,
+  },
   mutations: {
     updateIdToken(state, idToken) {
       state.idToken = idToken;
