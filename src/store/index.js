@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    login({ commit }, authData) {
+    login({ commit, dispatch }, authData) {
       axios
         .post(
           `accounts:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
@@ -33,16 +33,22 @@ export default new Vuex.Store({
         .then((response) => {
           commit("updateIdToken", response.data.idToken);
           setTimeout(() => {
-            axiosRefresh
-              .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
-                grant_type: refresh_token,
-                refresh_token: response.data.refreshToken,
-              })
-              .then((response) => {
-                commit("updateIdToken", response.data.id_token);
-              });
+            dispatch("refreshIdToken", response.data.refreshToken);
           }, response.data.expiresIn * 1000);
           router.push("/");
+        });
+    },
+    refreshIdToken({ commit, dispatch }, refreshToken) {
+      axiosRefresh
+        .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
+          grant_type: "refresh_token",
+          refresh_token: refreshToken,
+        })
+        .then((response) => {
+          commit("updateIdToken", response.data.id_token);
+          setTimeout(() => {
+            dispatch("refreshIdToken", response.data.refresh_token);
+          }, response.data.expires_in * 1000);
         });
     },
     register({ commit }, authData) {
