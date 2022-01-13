@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import count from "./modules/count";
 import axios from "../axios-auth";
+import axiosRefresh from "../axios-refresh";
 import router from "../router";
 
 Vue.use(Vuex);
@@ -31,6 +32,16 @@ export default new Vuex.Store({
         )
         .then((response) => {
           commit("updateIdToken", response.data.idToken);
+          setTimeout(() => {
+            axiosRefresh
+              .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
+                grant_type: refresh_token,
+                refresh_token: response.data.refreshToken,
+              })
+              .then((response) => {
+                commit("updateIdToken", response.data.id_token);
+              });
+          }, response.data.expiresIn * 1000);
           router.push("/");
         });
     },
