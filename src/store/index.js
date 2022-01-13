@@ -37,7 +37,7 @@ export default new Vuex.Store({
         commit("updateIdToken", idToken);
       }
     },
-    login({ commit, dispatch }, authData) {
+    login({ dispatch }, authData) {
       axios
         .post(
           `accounts:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
@@ -48,32 +48,29 @@ export default new Vuex.Store({
           }
         )
         .then((response) => {
-          const now = new Date();
-          const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
-          commit("updateIdToken", response.data.idToken);
-          localStorage.setItem("idToken", response.data.idToken);
-          localStorage.setItem("expiryTimeMs", expiryTimeMs);
-          localStorage.setItem("refreshToken", response.data.refreshToken);
-          setTimeout(() => {
-            dispatch("refreshIdToken", response.data.refreshToken);
-          }, response.data.expiresIn * 1000);
+          dispatch("setAuthData", {
+            idToken: response.data.idToken,
+            expiresIn: response.data.expiresIn,
+            refreshToken: response.data.refreshToken,
+          });
           router.push("/");
         });
     },
-    refreshIdToken({ commit, dispatch }, refreshToken) {
+    refreshIdToken({ dispatch }, refreshToken) {
       axiosRefresh
         .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
           grant_type: "refresh_token",
           refresh_token: refreshToken,
         })
         .then((response) => {
-          commit("updateIdToken", response.data.id_token);
-          setTimeout(() => {
-            dispatch("refreshIdToken", response.data.refresh_token);
-          }, response.data.expires_in * 1000);
+          dispatch("setAuthData", {
+            idToken: response.data.id_token,
+            expiresIn: response.data.expires_in,
+            refreshToken: response.data.refresh_token,
+          });
         });
     },
-    register({ commit }, authData) {
+    register({ dispatch }, authData) {
       axios
         .post(`accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
           email: authData.email,
@@ -81,9 +78,24 @@ export default new Vuex.Store({
           returnSecureToken: true,
         })
         .then((response) => {
-          commit("updateIdToken", response.data.idToken);
+          dispatch("setAuthData", {
+            idToken: response.data.idToken,
+            expiresIn: response.data.expiresIn,
+            refreshToken: response.data.refreshToken,
+          });
           router.push("/");
         });
+    },
+    setAuthData({ commit, dispatch }, authData) {
+      const now = new Date();
+      const expiryTimeMs = now.getTime() + authData.expiresIn * 1000;
+      commit("updateIdToken", authData.idToken);
+      localStorage.setItem("idToken", authData.idToken);
+      localStorage.setItem("expiryTimeMs", expiryTimeMs);
+      localStorage.setItem("refreshToken", authData.refreshToken);
+      setTimeout(() => {
+        dispatch("refreshIdToken", authData.refreshToken);
+      }, authData.expiresIn * 1000);
     },
   },
   modules: {
