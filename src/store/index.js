@@ -23,7 +23,19 @@ export default new Vuex.Store({
     autoLogin({ commit }) {
       const idToken = localStorage.getItem("idToken");
       if (!idToken) return;
-      commit("updateIdToken", idToken);
+      const now = new Date();
+      const expiryTimeMs = localStorage.getItem("expiryTimeMs");
+      const isExpired = now.getTime() >= expiryTimeMs;
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (isExpired) {
+        this.dispatch("refreshIdToken", refreshToken);
+      } else {
+        const expiresInMs = expiryTimeMs - now.getTime();
+        setTimeout(() => {
+          this.dispatch("refreshIdToken", refreshToken);
+        }, expiresInMs);
+        commit("updateIdToken", idToken);
+      }
     },
     login({ commit, dispatch }, authData) {
       axios
@@ -36,8 +48,12 @@ export default new Vuex.Store({
           }
         )
         .then((response) => {
+          const now = new Date();
+          const expiryTimeMs = now.getTime() + response.data.expiresIn * 1000;
           commit("updateIdToken", response.data.idToken);
           localStorage.setItem("idToken", response.data.idToken);
+          localStorage.setItem("expiryTimeMs", expiryTimeMs);
+          localStorage.setItem("refreshToken", response.data.refreshToken);
           setTimeout(() => {
             dispatch("refreshIdToken", response.data.refreshToken);
           }, response.data.expiresIn * 1000);
