@@ -44,6 +44,7 @@ Vue.filter("upperCase", function (value) {
 });
 Vue.mixin({});
 
+store.dispatch("autoLogin");
 new Vue({
   router,
   store,

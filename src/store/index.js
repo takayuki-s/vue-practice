@@ -20,6 +20,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    autoLogin({ commit }) {
+      const idToken = localStorage.getItem("idToken");
+      if (!idToken) return;
+      commit("updateIdToken", idToken);
+    },
     login({ commit, dispatch }, authData) {
       axios
         .post(
@@ -32,6 +37,7 @@ export default new Vuex.Store({
         )
         .then((response) => {
           commit("updateIdToken", response.data.idToken);
+          localStorage.setItem("idToken", response.data.idToken);
           setTimeout(() => {
             dispatch("refreshIdToken", response.data.refreshToken);
           }, response.data.expiresIn * 1000);
