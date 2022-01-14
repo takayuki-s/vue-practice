@@ -56,6 +56,13 @@ export default new Vuex.Store({
           router.push("/");
         });
     },
+    logout({ commit }) {
+      commit("updateIdToken", null);
+      localStorage.removeItem("idToken");
+      localStorage.removeItem("expiryTimeMs");
+      localStorage.removeItem("refreshToken");
+      router.replace("/login");
+    },
     async refreshIdToken({ dispatch }, refreshToken) {
       axiosRefresh
         .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
