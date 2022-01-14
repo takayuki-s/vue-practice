@@ -44,9 +44,10 @@ Vue.filter("upperCase", function (value) {
 });
 Vue.mixin({});
 
-store.dispatch("autoLogin");
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+store.dispatch("autoLogin").then(() => {
+  new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount("#app");
+});

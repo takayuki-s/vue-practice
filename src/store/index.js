@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    autoLogin({ commit }) {
+    async autoLogin({ commit }) {
       const idToken = localStorage.getItem("idToken");
       if (!idToken) return;
       const now = new Date();
@@ -28,7 +28,7 @@ export default new Vuex.Store({
       const isExpired = now.getTime() >= expiryTimeMs;
       const refreshToken = localStorage.getItem("refreshToken");
       if (isExpired) {
-        this.dispatch("refreshIdToken", refreshToken);
+        await this.dispatch("refreshIdToken", refreshToken);
       } else {
         const expiresInMs = expiryTimeMs - now.getTime();
         setTimeout(() => {
@@ -56,7 +56,7 @@ export default new Vuex.Store({
           router.push("/");
         });
     },
-    refreshIdToken({ dispatch }, refreshToken) {
+    async refreshIdToken({ dispatch }, refreshToken) {
       axiosRefresh
         .post(`/token?key=${process.env.VUE_APP_FIREBASE_API_KEY}`, {
           grant_type: "refresh_token",
